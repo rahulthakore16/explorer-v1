@@ -1,0 +1,182 @@
+/* Card — 12-column editorial layout */
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-gutter);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardReversed {
+  direction: ltr;
+}
+
+/* Info panel */
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid var(--color-border);
+  padding-left: 32px;
+}
+
+.infoReversed {
+  border-left: none;
+  border-right: 1px solid var(--color-border);
+  padding-left: 0;
+  padding-right: 32px;
+  text-align: right;
+}
+
+.name {
+  font-size: var(--font-size-headline-lg-mobile);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  word-break: break-word;
+  margin: 0;
+}
+
+.indexLabel {
+  display: block;
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.dataGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.dataItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dataLabel {
+  font-size: var(--font-size-label);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+}
+
+.dataValue {
+  font-size: var(--font-size-body-md);
+  color: var(--color-primary);
+}
+
+/* Image panel */
+.imageContainer {
+  overflow: hidden;
+  background-color: var(--color-surface-container);
+}
+
+.flag {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter var(--transition-slow);
+}
+
+.flag:hover {
+  filter: grayscale(0%);
+}
+
+/* Search highlight */
+.highlight {
+  color: var(--color-secondary);
+  background: transparent;
+  font-style: normal;
+}
+
+/* Population density bar */
+.densityBar {
+  margin-top: 24px;
+  height: 4px;
+  width: 100%;
+  background-color: var(--color-border-light);
+}
+
+.densityFill {
+  height: 100%;
+  background-color: var(--color-secondary);
+  transition: width 0.6s ease;
+}
+
+/* Compare button */
+.compareBtn {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  transition: background-color var(--transition-base), color var(--transition-base);
+  align-self: flex-start;
+}
+
+.compareBtn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.compareBtnActive {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+}
+
+/* Tablet+ — two-column layout */
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+  }
+
+  .cardReversed {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .cardReversed .info {
+    order: 2;
+  }
+
+  .cardReversed .imageContainer {
+    order: 1;
+  }
+
+  .name {
+    font-size: var(--font-size-headline-lg);
+  }
+}
+
+/* Desktop — larger type */
+@media (min-width: 1200px) {
+  .name {
+    font-size: var(--font-size-display);
+    line-height: 1;
+  }
+}
