@@ -1,0 +1,22 @@
+.button {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius);
+  z-index: 100;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  opacity: 0.9;
+}
+
+.button:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
