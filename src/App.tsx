@@ -4,6 +4,7 @@ import { DEFAULT_REGION, type Region } from './config/constants';
 import { ComparisonModal } from './components/ComparisonModal';
 import { CountryGrid } from './components/CountryGrid';
 import { ErrorMessage } from './components/ErrorMessage';
+import { LoadingSpinner } from './components/LoadingSpinner';
 import { RegionFilter } from './components/RegionFilter';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBar } from './components/SearchBar';
@@ -16,7 +17,7 @@ import type { Country } from './types';
 import styles from './App.module.css';
 
 export function App() {
-  const { countries, loading, error, retry } = useCountries();
+  const { countries, loading, error, isSlowLoad, retry } = useCountries();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeRegion, setActiveRegion] = useState<Region>(DEFAULT_REGION);
   const [sortBy, setSortBy] = useState<SortOption>('name-asc');
@@ -129,11 +130,14 @@ export function App() {
 
         <div className={styles.content}>
           {loading && (
-            <div className={styles.skeletonList}>
-              {Array.from({ length: 4 }).map((_, i) => (
-                <SkeletonCard key={i} reversed={i % 2 === 1} />
-              ))}
-            </div>
+            <>
+              {isSlowLoad && <LoadingSpinner isSlowLoad={isSlowLoad} />}
+              <div className={styles.skeletonList}>
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <SkeletonCard key={i} reversed={i % 2 === 1} />
+                ))}
+              </div>
+            </>
           )}
           {error && <ErrorMessage message={error} onRetry={retry} />}
           {!loading && !error && (
@@ -152,7 +156,7 @@ export function App() {
 
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <span className={styles.footerCopy}>© 2024 EXPLORER. ALL RIGHTS RESERVED.</span>
+          <span className={styles.footerCopy}>© {new Date().getFullYear()} EXPLORER. ALL RIGHTS RESERVED.</span>
           <nav className={styles.footerNav}>
             <a className={styles.footerLink} href="#">PRIVACY</a>
             <a className={styles.footerLink} href="#">TERMS</a>

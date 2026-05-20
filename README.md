@@ -86,10 +86,10 @@ src/
 
 ## API
 
-Uses the REST Countries API regional endpoint:
+Uses the REST Countries API with field filtering for optimised payload:
 
 ```
-GET https://restcountries.com/v3.1/region/Asia
+GET https://restcountries.com/v3.1/all?fields=name,capital,population,currencies,languages,flags,region
 ```
 
-No API key required. No backend needed.
+Countries are filtered by region client-side, with Asia selected by default. No API key required. No backend needed.

@@ -35,6 +35,7 @@
   letter-spacing: 0.05em;
   color: var(--color-on-surface);
   transition: background-color var(--transition-base), color var(--transition-base);
+  min-height: 44px;
 }
 
 .clearBtn:hover {

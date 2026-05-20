@@ -136,6 +136,7 @@
   text-transform: uppercase;
   transition: background-color var(--transition-base), color var(--transition-base);
   align-self: flex-start;
+  min-height: 44px;
 }
 
 .compareBtn:hover {
